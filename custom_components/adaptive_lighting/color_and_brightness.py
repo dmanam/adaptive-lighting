@@ -174,6 +174,10 @@ class SunEvents:
         """Calculate the position of the sun, between [-1, 1]."""
         target_ts = dt.timestamp()
         (_, prev_ts), (next_event, next_ts) = self.prev_and_next_events(dt)
+
+        if next_event == SUN_EVENT_SUNRISE:
+            return -1
+
         h, x = (
             (prev_ts, next_ts)
             if next_event in (SUN_EVENT_SUNSET, SUN_EVENT_SUNRISE)
